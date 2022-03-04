@@ -1,3 +1,6 @@
+---
+helmrepo: tb-helm
+---
 # tb4mmaggots - Helm Charts!
 ## Usage
 
@@ -6,7 +9,7 @@ Helm's [documentation](https://helm.sh/docs) to get started.
 
 Once Helm has been set up correctly, add the repo as follows:
 
-    $ helm repo add tb-helm https://tb4mmaggots.github.io/helm-charts
+    $ helm repo add {{ helmrepo }} https://tb4mmaggots.github.io/helm-charts
 
 If you had already added this repo earlier, run `helm repo update` to retrieve
 the latest versions of the packages.  You can then run `helm search repo
@@ -14,7 +17,7 @@ tb-helm` to see the charts.
 
 To install the <chart-name> chart:
 
-    $ helm install my-<chart-name> tb-helm/<chart-name>
+    $ helm install my-<chart-name> {{ helmrepo }}/<chart-name>
 
 To uninstall the chart:
 
@@ -39,7 +42,7 @@ To uninstall the chart:
 {{ latest_chart.description }}
 
 ```console
-$ helm install --version {{ latest_chart.version }} myrelease tb-helm/{{ latest_chart.name }}
+$ helm install --version {{ latest_chart.version }} myrelease {{ helmrepo }}/{{ latest_chart.name }}
 ```
 
 | Chart |{% for dep in latest_chart.dependencies %} {{ dep.name | capitalize }} |{% endfor %} App | Date |
