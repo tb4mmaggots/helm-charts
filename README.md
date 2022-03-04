@@ -21,7 +21,7 @@ To uninstall the chart:
     $ helm delete my-<chart-name>
 
 ## Charts:
-{% comment %}[0] and [1] below represent key and value{% endcomment %}
+% comment %}[0] and [1] below represent key and value{% endcomment %}
 {% for helm_chart in site.data.index.entries %}
 {% assign title = helm_chart[0] | capitalize %}
 {% assign all_charts = helm_chart[1] | sort: 'created' | reverse %}
@@ -33,3 +33,21 @@ To uninstall the chart:
   {% endif %}
   {{ title }}
 </h3>
+
+[Home]({{ latest_chart.home }}) \| [Source]({{ latest_chart.sources[0] }})
+
+{{ latest_chart.description }}
+
+```console
+$ helm install --version {{ latest_chart.version }} myrelease {{ site.repo_name }}/{{ latest_chart.name }}
+```
+
+| Chart |{% for dep in latest_chart.dependencies %} {{ dep.name | capitalize }} |{% endfor %} App | Date |
+| - | - | - |{% for dep in latest_chart.dependencies %} - |{% endfor %}
+{% for chart in all_charts -%}
+{% unless chart.version contains "-" -%}
+| [{{ chart.name }}-{{ chart.version }}]({{ chart.urls[0] }}) |{% for dep in chart.dependencies %} {{ dep.version | capitalize }} |{% endfor %} {{ chart.appVersion }} | {{ chart.created | date_to_long_string }} |
+{% endunless -%}
+{% endfor -%}
+
+{% endfor %}
