@@ -21,7 +21,7 @@ To uninstall the chart:
     $ helm delete my-<chart-name>
 
 ## Charts:
-% comment %}[0] and [1] below represent key and value{% endcomment %}
+{% comment %}[0] and [1] below represent key and value{% endcomment %}
 {% for helm_chart in site.data.index.entries %}
 {% assign title = helm_chart[0] | capitalize %}
 {% assign all_charts = helm_chart[1] | sort: 'created' | reverse %}
