@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  supachart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-03-04T02:41:38.057935271Z"
+    description: A Helm chart for Kubernetes
+    digest: 35382c40c252e125221a3c8d9e371fb1a1941b11a9ba76d32a6d49637e61d24f
+    name: supachart
+    type: application
+    urls:
+    - https://github.com/tb4mmaggots/helm-charts/releases/download/supachart-0.1.0/supachart-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-03-04T02:41:37.816509524Z"
