@@ -39,7 +39,7 @@ To uninstall the chart:
 {{ latest_chart.description }}
 
 ```console
-$ helm install --version {{ latest_chart.version }} myrelease {{ site.repo_name }}/{{ latest_chart.name }}
+$ helm install --version {{ latest_chart.version }} myrelease tb-helm/{{ latest_chart.name }}
 ```
 
 | Chart |{% for dep in latest_chart.dependencies %} {{ dep.name | capitalize }} |{% endfor %} App | Date |
