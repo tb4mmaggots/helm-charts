@@ -19,3 +19,17 @@ To install the <chart-name> chart:
 To uninstall the chart:
 
     $ helm delete my-<chart-name>
+
+## Charts:
+{% comment %}[0] and [1] below represent key and value{% endcomment %}
+{% for helm_chart in site.data.index.entries %}
+{% assign title = helm_chart[0] | capitalize %}
+{% assign all_charts = helm_chart[1] | sort: 'created' | reverse %}
+{% assign latest_chart = all_charts[0] %}
+
+<h3>
+  {% if latest_chart.icon %}
+  <img src="{{ latest_chart.icon }}" style="height:1.2em;vertical-align: text-top;" />
+  {% endif %}
+  {{ title }}
+</h3>
