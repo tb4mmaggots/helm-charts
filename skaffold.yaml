@@ -1,0 +1,32 @@
+apiVersion: skaffold/v2beta13
+kind: Config
+metadata:
+  name: idc
+
+profiles:
+- name: develop
+  activation:
+  - kubeContext: rancher-desktop #k3d
+  # build:
+  #   artifacts:
+  #   - image: supa
+  #     context: ../../supa
+  deploy:
+    helm:
+      releases:
+      - name: supachart
+        chartPath: ./charts/supachart
+        valuesFiles: ["./charts/supachart/env/values-dev.yaml"]
+        # artifactOverrides:
+
+- name: prod
+  activation:
+  - kubeContext: arn:aws
+  deploy:
+    helm:
+      releases:
+      - name: supa
+        namespace: supa-ns
+        createNamespace: true
+        chartPath: ./charts/supachart
+        valuesFiles: ["./charts/supachart/env/values-prod.yaml"]
