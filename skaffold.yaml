@@ -6,7 +6,7 @@ metadata:
 profiles:
 - name: develop
   activation:
-  - kubeContext: rancher-desktop #k3d
+  - kubeContext: k3d
   # build:
   #   artifacts:
   #   - image: supa
