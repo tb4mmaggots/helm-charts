@@ -2,6 +2,43 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+jupyterhub:
+  hub:
+    services:
+      dask-gateway:
+        apiToken: "ce68ea5e75f16ed33879ab3794d305d68b7b9262ca306fe78c431b10000c594e"
+
+dask-gateway:
+  gateway:
+    auth:
+      jupyterhub:
+        apiToken: "ce68ea5e75f16ed33879ab3794d305d68b7b9262ca306fe78c431b10000c594e"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 replicaCount: 1
 
 image:

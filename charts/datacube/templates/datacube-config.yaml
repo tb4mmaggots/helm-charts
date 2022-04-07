@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datacube-config
+  namespace: {{.Values.namespace}}
+data:
+  datacube.conf: |
+    [datacube]
+    db_database: {{.Values.database.dbName}}
+    db_hostname: {{.Values.database.hostname}}
+    db_username: {{.Values.database.user}}
+    db_password: {{.Values.database.psw}}
+    db_port: {{.Values.database.port}}

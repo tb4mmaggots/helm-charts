@@ -7,17 +7,20 @@ profiles:
 - name: develop
   activation:
   - kubeContext: k3d
-  # build:
-  #   artifacts:
-  #   - image: supa
-  #     context: ../../supa
+  build:
+    artifacts:
+    - image: datacube
+      context: ../tb4mmaggots/datacube
   deploy:
     helm:
       releases:
-      - name: supachart
-        chartPath: ./charts/supachart
-        valuesFiles: ["./charts/supachart/env/values-dev.yaml"]
-        # artifactOverrides:
+      - name: dc
+        namespace: dc
+        chartPath: ./charts/datacube
+        valuesFiles: ["./charts/datacube/env/values-dev.yaml"]
+        artifactOverrides:
+          datacube:
+              image: datacube
 
 - name: prod
   activation:
@@ -25,8 +28,8 @@ profiles:
   deploy:
     helm:
       releases:
-      - name: supa
-        namespace: supa-ns
+      - name: dc
+        namespace: dc
         createNamespace: true
-        chartPath: ./charts/supachart
-        valuesFiles: ["./charts/supachart/env/values-prod.yaml"]
+        chartPath: ./charts/datacube
+        valuesFiles: ["./charts/datacube/env/values-prod.yaml"]

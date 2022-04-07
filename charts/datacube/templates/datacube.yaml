@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{.Values.namespace}}
+  name: {{.Values.datacube.name}}
+  labels:
+    app: {{.Values.datacube.name}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{.Values.datacube.name}}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.datacube.name}}
+    spec:
+      # nodeSelector:
+      #   Type: {{.Values.datacube.nodeSelectorType}}
+      # tolerations:
+      # - key: "proces_type"
+      #   operator: "Equal"
+      #   value: "proces"
+      #   effect: "NoSchedule"
+      containers:
+      - name: {{.Values.datacube.name}}
+        image: {{.Values.datacube.image}}
+        imagePullPolicy: {{.Values.datacube.pullPolicy}}
+        env:
+        - name: DB_HOSTNAME
+          value: {{.Values.database.hostname}}
+        - name: DB_PORT
+          value: {{.Values.database.port | quote}}
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: dc-db-creds
+              key: dc-user
+        - name: DB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: dc-db-creds
+              key: dc-db
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dc-db-creds
+              key: dc-psw
+        resources:
+          limits:
+            memory: "1000Mi"
+            #cpu: "500m"
+        

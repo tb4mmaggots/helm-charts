@@ -1,0 +1,20 @@
+namespace: dc
+
+database:
+    image: postgres:alpine
+    name: db
+    uri: "external_database_URI"
+    hostname: db
+    port: 5432
+    dbName: dc
+    user: dc
+    psw: supersecretpassword
+    hostMount: /mount/pgdata
+    nodeSelectorType: proces
+    pullPolicy: IfNotPresent
+
+datacube:
+    name: datacube
+    image: registry_image_uri
+    pullPolicy: IfNotPresent
+    nodeSelectorType: proces

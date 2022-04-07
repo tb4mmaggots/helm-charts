@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: {{.Values.namespace}}
+  name: datacube-init
+spec:
+  template:
+    metadata:
+      labels:
+        app: datacube-init
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      # nodeSelector:
+      #   Type: {{.Values.datacube.nodeSelectorType}}
+      # tolerations:
+      # - key: "proces_type"
+      #   operator: "Equal"
+      #   value: "proces"
+      #   effect: "NoSchedule"
+      containers:
+      - name: datacube-init
+        image: {{.Values.datacube.image}}
+        imagePullPolicy: {{.Values.datacube.pullPolicy}}
+        command: ["datacube",  "system", "init"]
+        env:
+        - name: DB_HOSTNAME
+          value: {{.Values.database.hostname}}
+        - name: DB_PORT
+          value: {{.Values.database.port | quote}}
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: dc-db-creds
+              key: dc-user
+        - name: DB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: dc-db-creds
+              key: dc-db
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dc-db-creds
+              key: dc-psw        
+      restartPolicy: Never
+  backoffLimit: 5
