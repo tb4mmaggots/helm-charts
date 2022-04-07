@@ -1,6 +1,0 @@
-dependencies:
-- name: daskhub
-  repository: https://helm.dask.org/
-  version: 2022.2.1
-digest: sha256:4743e1503bd46fbd5b91f9c2ab491d0fb6ec96d761f24e3505625d5a3439ebfe
-generated: "2022-03-24T17:46:22.9395373-04:00"
