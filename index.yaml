@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  datacube:
+  - apiVersion: v2
+    appVersion: 1.8.6
+    created: "2022-04-07T19:32:14.756177716Z"
+    description: Helm chart for the datacube
+    digest: 5c3ea8a61719b11f5fedba5ece33302943c6011f2d1690506873b20c30ecc745
+    name: datacube
+    type: application
+    urls:
+    - https://github.com/tb4mmaggots/helm-charts/releases/download/datacube-0.1.0/datacube-0.1.0.tgz
+    version: 0.1.0
   supachart:
   - apiVersion: v2
     appVersion: 1.16.0
